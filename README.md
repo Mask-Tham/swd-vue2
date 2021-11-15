@@ -1,5 +1,7 @@
 # swd-vue2
 
+SWD - Test Developer
+
 ## Project setup
 ```
 npm install
