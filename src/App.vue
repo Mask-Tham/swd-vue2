@@ -56,11 +56,11 @@ export default {
 
 .content {
   position: relative;
-  top: 70px;
+  top: 60px;
   margin: 0px 0px 0px 250px;
   padding: 10px;
   // width: 100%;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 60px);
   background: #d1d1d1;
 }
 </style>

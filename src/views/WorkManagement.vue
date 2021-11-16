@@ -6,9 +6,14 @@
     </div>
     <div class="tab-list">
       <vs-tabs color="success">
-        <vs-tab label="List">
+        <vs-tab label="List" icon="list">
           <div class="con-tab-ejemplo">
             <Table />
+          </div>
+        </vs-tab>
+        <vs-tab label="Calendar" icon="event_note">
+          <div class="con-tab-ejemplo">
+            <Calendar />
           </div>
         </vs-tab>
         <vs-tab label="Service">
@@ -18,16 +23,17 @@
             </vs-tab>
           </vs-tabs>
         </vs-tab>
-        <vs-tab label="Calendar">
-          <div class="con-tab-ejemplo">
-            <Calendar/>
-          </div>
-        </vs-tab>
         <vs-tab disabled label="Disabled">
           <div class="con-tab-ejemplo">Disabled</div>
         </vs-tab>
         <vs-tab label="Lorem ipsum dolor sit amet">
           <div class="con-tab-ejemplo">Lorem ipsum dolor sit amet</div>
+          <apexchart
+            width="100%"
+            type="line"
+            :options="options"
+            :series="series"
+          ></apexchart>
         </vs-tab>
       </vs-tabs>
     </div>
@@ -37,80 +43,34 @@
 <script>
 import $ from "jquery";
 import Table from "@/components/WorkManagement/Table.vue";
-import Calendar from '@/components/WorkManagement/Calendar.vue';
+import Calendar from "@/components/WorkManagement/Calendar.vue";
+
 export default {
   data() {
     return {
-      users: [
-        {
-          id: 1,
-          name: "Leanne Graham",
-          username: "Bret",
-          email: "Sincere@april.biz",
-          website: "hildegard.org",
+      categorie:[ new Date("2020-07-08T08:22:20.348Z").getTime(),
+            new Date("2020-07-08T09:22:20.348Z").getTime(),
+            new Date("2020-07-08T10:22:20.348Z").getTime(),
+            new Date("2020-07-08T11:22:20.348Z").getTime(),
+            new Date("2020-07-08T12:22:20.348Z").getTime(),
+            new Date("2020-07-08T13:22:20.348Z").getTime(),
+            new Date("2020-07-08T14:22:20.348Z").getTime(),
+            new Date("2020-07-08T15:22:20.348Z").getTime(),],
+      data1:[30, 40, 45, 50, 49, 60, 70, 91],
+      options: {
+        chart: {
+          id: "vuechart-example",
         },
-        {
-          id: 2,
-          name: "Ervin Howell",
-          username: "Antonette",
-          email: "Shanna@melissa.tv",
-          website: "anastasia.net",
+        xaxis: {
+          categories: [],
+          type: "datetime",
+
         },
+      },
+      series: [
         {
-          id: 3,
-          name: "Clementine Bauch",
-          username: "Samantha",
-          email: "Nathan@yesenia.net",
-          website: "ramiro.info",
-        },
-        {
-          id: 4,
-          name: "Patricia Lebsack",
-          username: "Karianne",
-          email: "Julianne.OConner@kory.org",
-          website: "kale.biz",
-        },
-        {
-          id: 5,
-          name: "Chelsey Dietrich",
-          username: "Kamren",
-          email: "Lucio_Hettinger@annie.ca",
-          website: "demarco.info",
-        },
-        {
-          id: 6,
-          name: "Mrs. Dennis Schulist",
-          username: "Leopoldo_Corkery",
-          email: "Karley_Dach@jasper.info",
-          website: "ola.org",
-        },
-        {
-          id: 7,
-          name: "Kurtis Weissnat",
-          username: "Elwyn.Skiles",
-          email: "Telly.Hoeger@billy.biz",
-          website: "elvis.io",
-        },
-        {
-          id: 8,
-          name: "Nicholas Runolfsdottir V",
-          username: "Maxime_Nienow",
-          email: "Sherwood@rosamond.me",
-          website: "jacynthe.com",
-        },
-        {
-          id: 9,
-          name: "Glenna Reichert",
-          username: "Delphine",
-          email: "Chaim_McDermott@dana.io",
-          website: "conrad.com",
-        },
-        {
-          id: 10,
-          name: "Clementina DuBuque",
-          username: "Moriah.Stanton",
-          email: "Rey.Padberg@karina.biz",
-          website: "ambrose.net",
+          name: "series-1",
+          data: [],
         },
       ],
     };
@@ -124,58 +84,60 @@ export default {
     $.getJSON(LinkData).done((json) => {
       console.log("data", json, typeof json, json.length);
       this.$store.commit("rawData", json);
-      // console.log(json.slice(0, 10));
 
-      // var i,
-      //   j,
-      //   temporary,
-      //   chunk = 100;
-      // var newData = [];
-      // for (i = 0, j = json.length; i < j; i += chunk) {
-      //   temporary = json.slice(i, i + chunk);
-      //   // do whatever
-      //   newData.push(temporary);
-      // }
-      // console.log(temporary);
-      // console.log(newData);
-      // this.$store.commit("rawData", newData);
-
-      // console.log("100 unit", this.$store.getters.rawData[0]);
-
-      // for (i = 0; i < j.length; i += 1) {
-      //   // do whatever
-
-      // }
-      var numDate = []
-      var date = ''
+      var numDate = [];
+      var date = "";
       for (let index = 0; index < json.length; index++) {
         // console.log(json[index].timestamp.split('T'))
-        const dateArray = json[index].timestamp.split('T')
+        const dateArray = json[index].timestamp.split("T");
 
         if (!numDate.includes(dateArray[0])) {
-          numDate.push(dateArray[0])
-          date = dateArray[0]
+          numDate.push(dateArray[0]);
+          date = dateArray[0];
         }
-        
-      }
-      console.log(numDate,date)
 
-      var numofdate = []
+        json[index]['getTime'] = new Date(json[index].timestamp.split('Z')[0]).getTime()
+      }
+      console.log("data", json, typeof json, json.length);
+      json.sort((a,b) => (a.getTime > b.getTime) ? 1 : ((b.getTime > a.getTime) ? -1 : 0))
+
+      // let data = json.map((item) => item.data)
+      // let data2 = json.map((item) => item.data2)
+      // let dateTime = json.map((item) => item.getTime)
+      // console.log(data, data2, dateTime);
+
+      // console.log(this.series,this.$store.getters.data);
+
+
+      // this.$store.commit('categorieData',dateTime)
+      // this.$store.commit('data',data)
+
+      // this.options.xaxis.categories = dateTime
+      // this.series.data = data
+
+
+      // console.log(this.series,this.$store.getters.data);
+
+
+      console.log(numDate, date);
+
+      var numofdate = [];
       for (let index = 0; index < numDate.length; index++) {
-        let sum = json.reduce((total,x) => (x.timestamp.split('T')[0]===numDate[index] ? total+1 : total), 0)
-        numofdate.push({date: numDate[index], count: sum})
-        
+        let sum = json.reduce(
+          (total, x) =>
+            x.timestamp.split("T")[0] === numDate[index] ? total + 1 : total,
+          0
+        );
+        numofdate.push({ date: numDate[index], count: sum });
       }
-      console.log(numofdate)
-      console.log(json[3707])
+      console.log(numofdate);
+      console.log(json[3707]);
 
-
-      this.$store.commit('numofDate',numofdate)
-
+      this.$store.commit("numofDate", numofdate);
     });
   },
   updated() {
-    console.log("data", this.$store.getters.rawData);
+    console.log("update data", this.$store.getters.rawData);
   },
 };
 </script>
@@ -197,6 +159,9 @@ export default {
   }
   .tab-list {
     padding: 10px;
+    .buttontab {
+      background: #46c93a;
+    }
   }
 }
 </style>

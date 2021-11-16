@@ -90,8 +90,8 @@ export default {
 
 <style lang="scss" scoped>
 .parentx-static {
-  height: calc(100% - 70px);
-  top: 70px;
+  height: calc(100% - 60px);
+  top: 60px;
   position: fixed;
   width: 250px;
   background: #fff;
