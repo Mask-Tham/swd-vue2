@@ -16,25 +16,6 @@
             <Calendar />
           </div>
         </vs-tab>
-        <vs-tab label="Service">
-          <vs-tabs color="dark">
-            <vs-tab label="login">
-              <div class="con-tab-ejemplo">Service</div>
-            </vs-tab>
-          </vs-tabs>
-        </vs-tab>
-        <vs-tab disabled label="Disabled">
-          <div class="con-tab-ejemplo">Disabled</div>
-        </vs-tab>
-        <vs-tab label="Lorem ipsum dolor sit amet">
-          <div class="con-tab-ejemplo">Lorem ipsum dolor sit amet</div>
-          <apexchart
-            width="100%"
-            type="line"
-            :options="options"
-            :series="series"
-          ></apexchart>
-        </vs-tab>
       </vs-tabs>
     </div>
   </div>
@@ -97,6 +78,10 @@ export default {
         }
 
         json[index]['getTime'] = new Date(json[index].timestamp.split('Z')[0]).getTime()
+        let dateText = json[index].timestamp.split('T')
+        json[index]['timestampshow'] = dateText[0] + " " +dateText[1].slice(0,8)
+
+
       }
       console.log("data", json, typeof json, json.length);
       json.sort((a,b) => (a.getTime > b.getTime) ? 1 : ((b.getTime > a.getTime) ? -1 : 0))

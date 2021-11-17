@@ -13,24 +13,24 @@
         Overview
       </vs-sidebar-item>
 
-      <vs-sidebar-item index="2" icon="gavel" to="/"> Report </vs-sidebar-item>
+      <vs-sidebar-item index="2" icon="description" to="/"> Report </vs-sidebar-item>
 
-      <vs-sidebar-item icon="person" index="3" to="/"> Map </vs-sidebar-item>
+      <vs-sidebar-item icon="map" index="3" to="/"> Map </vs-sidebar-item>
 
-      <vs-sidebar-item icon="person" index="4" to="/">
+      <vs-sidebar-item icon="explore" index="4" to="/">
         Location
       </vs-sidebar-item>
 
       <vs-sidebar-group title="Device Mamagement" :open="true">
-        <vs-sidebar-item icon="person" index="5" to="/">
+        <vs-sidebar-item icon="signal_cellular_alt" index="5" to="/">
           Sensor
         </vs-sidebar-item>
 
-        <vs-sidebar-item icon="person" index="6" to="/">
+        <vs-sidebar-item icon="router" index="6" to="/">
           Gateway
         </vs-sidebar-item>
 
-        <vs-sidebar-item icon="person" index="7" to="/">
+        <vs-sidebar-item icon="photo_camera" index="7" to="/">
           Camera
         </vs-sidebar-item>
       </vs-sidebar-group>
@@ -38,25 +38,25 @@
       <!-- <vs-divider /> -->
 
       <vs-sidebar-group title="Manage Work" :open="true">
-        <vs-sidebar-item index="8" icon="verified_user" to="/work-management">
+        <vs-sidebar-item index="8" icon="work" to="/work-management">
           Work Management
         </vs-sidebar-item>
-        <vs-sidebar-item index="9" icon="account_box" to="/">
+        <vs-sidebar-item index="9" icon="assignment" to="/">
           Work Status
         </vs-sidebar-item>
       </vs-sidebar-group>
       <!-- <vs-divider /> -->
 
       <vs-sidebar-group title="Setting" :open="true">
-        <vs-sidebar-item icon="person" index="10" to="/">
+        <vs-sidebar-item icon="new_releases" index="10" to="/">
           Alert
         </vs-sidebar-item>
 
-        <vs-sidebar-item icon="person" index="11" to="/">
+        <vs-sidebar-item icon="wifi" index="11" to="/">
           Network
         </vs-sidebar-item>
 
-        <vs-sidebar-item icon="person" index="12" to="/">
+        <vs-sidebar-item icon="explore" index="12" to="/">
           Location Setting
         </vs-sidebar-item>
         <vs-sidebar-item icon="person" index="13" to="/">
@@ -65,7 +65,7 @@
         <vs-sidebar-item icon="person" index="14" to="/">
           Permission Setting
         </vs-sidebar-item>
-        <vs-sidebar-item icon="person" index="15" to="/">
+        <vs-sidebar-item icon="insert_drive_file" index="15" to="/">
           Form
         </vs-sidebar-item>
       </vs-sidebar-group>
